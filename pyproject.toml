@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["filter_crop"]  # Specify the package directory
+
+[project]
+name = "filter_crop"
+readme = "README.md"
+requires-python = ">=3.10, <3.13"
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+
+dynamic = ["version"]
+
+dependencies = [
+  "filter_runtime[all]==1.4.25"
+  # protege-runtime=="0.4.6"
+]
+
+[tool.setuptools.dynamic]
+version = { file = "VERSION" }
+
+[tool.distutils.bdist_wheel]
+python-tag = "py3"
+
+
+[project.optional-dependencies]
+
+dev = [
+  "build==1.2.1",
+  "setuptools==72.2.0",
+  "twine>=6.1.0,<7",
+  "wheel==0.44.0",
+  "pytest==8.3.4",
+  "pytest-cov==6.0.0"
+]
+
+[[tool.uv.index]]
+name = "default"
+url = "https://us-west1-python.pkg.dev/plainsightai-prod/python/simple/"
+
+[[tool.uv.index]]
+name = "pypi"
+url = "https://pypi.org/simple"

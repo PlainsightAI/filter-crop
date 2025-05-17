@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  filter:
+    name: Filter
+    # If your filter uses a protege model, use filter-ci-3.11 instead
+    #   This is due to certain protege depdencies such as the onnx simplifier 
+    #   not supporting Python 3.10 (3.12 support has not been released either
+    #   as of this commit but it's on the way) 
+    uses: PlainsightAI/gh-actions/.github/workflows/filter-ci.yaml@main
+    # uses: PlainsightAI/gh-actions/.github/workflows/filter-ci-3.11.yaml@main
+    with:
+      project_id: 15 # 15 is the ID of the filters testmo project
+    secrets:
+      OPS_SSH_PRIV: ${{ secrets.OPS_SSH_PRIV }}
+      OPS_GHA_TOKEN: ${{ secrets.OPS_GHA_TOKEN }}
+      # JFROG will be removed later
+      JFROG_CI_RW_USER: ${{ secrets.JFROG_CI_RW_USER }}
+      JFROG_CI_RW_API_KEY: ${{ secrets.JFROG_CI_RW_API_KEY }}
+      TESTMO_PLAINSIGHT_URL: ${{ secrets.TESTMO_PLAINSIGHT_URL }}
+      TESTMO_PLAINSIGHT_TESTING_API_KEY: ${{ secrets.TESTMO_PLAINSIGHT_TESTING_API_KEY }}
+      # PAT to sync docs across repos
+      # Fined-grained access tokens currently lack the necessary access
+      GH_DOCS_PUBLISHING_TOKEN: ${{ secrets.GH_DOCS_PUBLISHING_TOKEN }}

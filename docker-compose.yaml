@@ -1,0 +1,56 @@
+services:
+  video_in:
+    image: us-west1-docker.pkg.dev/plainsightai-prod/oci/video_in:v1.4.25
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-}
+      FILTER_ID: VideoIn
+      FILTER_SOURCES: file:///filter_example_video.mp4!loop
+      FILTER_OUTPUTS: tcp://*:5550
+    volumes:
+      - ./filter_example_video.mp4:/filter_example_video.mp4:ro
+      - ./cache:/app/cache
+      - ./telemetry:/app/telemetry
+    networks:
+      - filter-network
+
+  filter_crop:
+    image: us-west1-docker.pkg.dev/plainsightai-prod/oci/filter-crop:v0.1.0
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-}
+      FILTER_ID: FilterCrop
+      FILTER_SOURCES: tcp://video_in:5550
+      FILTER_OUTPUTS: tcp://*:5552
+      FILTER_MQ_LOG: pretty
+
+    # WARNING! WARNING! WARNING! If you do not have an Nvidia GPU then comment this section out!!!
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    # WARNING! WARNING! WARNING! If you do not have an Nvidia GPU then comment this section out!!!
+
+    volumes:
+      - ./cache:/app/cache
+      - ./telemetry:/app/telemetry
+    networks:
+      - filter-network
+
+  webvis:
+    image: us-west1-docker.pkg.dev/plainsightai-prod/oci/webvis:v1.4.25
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-}
+      FILTER_ID: Webvis
+      FILTER_SOURCES: tcp://filter_crop:5552
+    volumes:
+      - ./cache:/app/cache
+      - ./telemetry:/app/telemetry
+    ports:
+      - 8000:8000
+    networks:
+      - filter-network
+
+networks:
+  filter-network:
