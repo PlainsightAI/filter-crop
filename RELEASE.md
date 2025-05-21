@@ -3,6 +3,11 @@ Crop filter release notes
 
 ## [Unreleased]
 
+## v0.1.2 - 2025-05-22
+
+### Changed
+- Updated dependencies
+
 ## v0.1.1 - 2025-05-22
 
 ### Added
