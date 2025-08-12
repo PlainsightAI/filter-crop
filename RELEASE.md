@@ -3,6 +3,11 @@ Crop filter release notes
 
 ## [Unreleased]
 
+## v0.1.6 - 2025-08-12
+
+### Changed
+- Added Python 3.13 support
+
 ## v0.1.5 - 2025-08-06
 
 ### Changed
