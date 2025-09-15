@@ -190,6 +190,7 @@ class FilterCrop(Filter):
         Raises:
             ValueError: If polygon points are invalid or required parameters are missing
         """
+        
         config = FilterCropConfig(super().normalize_config(config))
 
         # Handle legacy parameters

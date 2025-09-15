@@ -3,6 +3,26 @@ Crop filter release notes
 
 ## [Unreleased]
 
+## v0.1.7 - 2025-09-15
+### Updated
+- **Documentation**: Completely updated `overview.md` with comprehensive sample pipelines, use cases, and configuration examples
+- **Test Suite**: Improved test coverage with better error handling and validation testing
+- **README**: Complete rewrite with quick start guide and configuration examples
+
+### Added
+- **Documentation**:
+  - 4 complete sample pipeline examples showing real-world usage
+  - 4 detailed use case scenarios (Security, Object Detection, Multi-Camera, Content Creation)
+  - Environment variable configuration examples
+  - Best practices and troubleshooting guides
+- **Enhanced Test Coverage**:
+  - Integration tests for configuration normalization
+  - Smoke tests for filter lifecycle management
+  - Comprehensive validation testing for all configuration parameters
+- **Usage Scripts**:
+  - Example pipeline usage script with multiple configuration modes
+  - Environment variable support for easy customization
+
 ## v0.1.6 - 2025-08-12
 
 ### Changed
