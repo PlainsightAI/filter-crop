@@ -1,7 +1,11 @@
 # Changelog
-Crop filter release notes
+Clipper release notes
 
 ## [Unreleased]
+
+## v0.1.8 - 2025-09-27
+### Updated
+- **Documentation**: Updated documentation
 
 ## v0.1.7 - 2025-09-15
 ### Updated
@@ -51,7 +55,7 @@ Crop filter release notes
 ## v0.1.1 - 2025-05-22
 
 ### Added
-- Initial release of the Crop filter for extracting regions of interest from video frames.
+- Initial release of Clipper for extracting regions of interest from video frames.
 - Supports three cropping modes:
   - **Polygon Mode**: Uses user-defined polygon coordinates to crop regions.
   - **Detection Mode**: Extracts crops from detection ROIs provided in frame metadata.
@@ -75,7 +79,7 @@ Crop filter release notes
   - Supports `.env` and `FILTER_*` environment variable overrides.
   - Includes conversion and validation of booleans, strings, lists, and polygon structures.
 - Legacy compatibility:
-  - Maintains compatibility with earlier Crop filter configurations.
+  - Maintains compatibility with earlier filter configurations.
   - Legacy keys like `class_name`, `cropped_frame_prefix`, and `crop_from_env` are supported.
 - Debugging support:
   - Includes logging at key stages of setup and processing.
@@ -103,4 +107,3 @@ Crop filter release notes
 
 ### Experimental
 - Support for mask-based polygon cropping (subject to optimization in future versions).
-

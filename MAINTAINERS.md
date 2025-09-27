@@ -1,6 +1,6 @@
 # MAINTAINERS
 
-This file lists the people responsible for maintaining the crop filter. Maintainers review pull requests, triage issues, and guide the technical direction of the project.
+This file lists the people responsible for maintaining Clipper. Maintainers review pull requests, triage issues, and guide the technical direction of the project.
 
 If you're submitting a pull request or issue and aren't sure who to tag, start here.
 

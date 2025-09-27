@@ -1,14 +1,14 @@
 ---
-title: Crop Filter
+title: Clipper
 sidebar_label: Overview
 sidebar_position: 1
 ---
 
 import Admonition from '@theme/Admonition';
 
-# Crop Filter
+# Clipper
 
-The Crop Filter is a specialized OpenFilter component that extracts regions of interest (ROIs) from video frames using either detection metadata or predefined polygons. It supports multiple cropping modes, flexible output options, and seamless integration into OpenFilter pipelines.
+Clipper is a specialized OpenFilter component that extracts regions of interest (ROIs) from video frames using either detection metadata or predefined polygons. It supports multiple cropping modes, flexible output options, and seamless integration into OpenFilter pipelines.
 
 ## Features
 
