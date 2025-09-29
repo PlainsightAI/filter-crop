@@ -1,13 +1,13 @@
-# Contributing to the Crop Filter
+# Contributing to Clipper
 
-Thanks for your interest in improving the **Crop Filter**, a standalone ROI cropping utility that uses OpenFilter as a framework! 🪚  
+Thanks for your interest in improving **Clipper**, a standalone ROI cropping utility that uses OpenFilter as a framework! 🪚  
 Whether you're optimizing performance, improving detection handling, fixing a bug, or refining the docs — your help is appreciated.
 
 This guide walks you through:
 
-* Setting up a local development environment for working on the Crop Filter
+* Setting up a local development environment for working on Clipper
 * Writing and running tests
-* Running the Crop Filter with the OpenFilter CLI
+* Running Clipper with the OpenFilter CLI
 * Our conventions for PRs and commit formatting
 * How to sign your commits (we follow the DCO)
 * Where to ask for help or offer ideas
@@ -16,7 +16,7 @@ This guide walks you through:
 
 ## Topics
 
-* [Contributing to the Crop Filter](#contributing-to-the-crop-filter)
+* [Contributing to Clipper](#contributing-to-clipper)
   * [Setting up your development environment](#setting-up-your-development-environment)
   * [Running tests](#running-tests)
   * [Running with the OpenFilter CLI](#running-with-the-openfilter-cli)
@@ -33,7 +33,7 @@ This guide walks you through:
 
 ## Setting up your development environment
 
-The Crop Filter is a standalone Python package that depends on [OpenFilter](https://github.com/PlainsightAI/openfilter).
+Clipper is a standalone Python package that depends on [OpenFilter](https://github.com/PlainsightAI/openfilter).
 
 To get started:
 
@@ -44,11 +44,11 @@ cd filter-crop
 make install
 ````
 
-This installs the Crop Filter and its dependencies, including OpenFilter.
+This installs Clipper and its dependencies, including OpenFilter.
 
 ### Quick test
 
-You can run the Crop Filter directly using:
+You can run Clipper directly using:
 
 ```python
 from filter_crop.filter import FilterCrop
@@ -63,7 +63,7 @@ Or include it in a multi-filter pipeline using `Filter.run_multi()`.
 
 ## Running tests
 
-The Crop Filter has a dedicated test suite in `tests/test_filter_crop.py`.
+Clipper has a dedicated test suite in `tests/test_filter_crop.py`.
 
 To run just its tests:
 
@@ -83,9 +83,9 @@ If you're editing detection logic, ROI processing, or polygon parsing, make sure
 
 ## Running with the OpenFilter CLI
 
-The Crop Filter can be used as part of a processing pipeline using the `openfilter` CLI.
+Clipper can be used as part of a processing pipeline using the `openfilter` CLI.
 
-Here’s an example of running the Crop Filter on a video using predefined polygon cropping:
+Here's an example of running Clipper on a video using predefined polygon cropping:
 ```bash
 openfilter run \
   - VideoIn --sources file://filter_example_video.mp4!loop \
@@ -104,10 +104,10 @@ make run
 This launches:
 
 * `VideoIn` to read the video
-* The Crop Filter to crop based on the polygon
+* Clipper to crop based on the polygon
 * `Webvis` to visualize the output
 
-Make sure the package is installed and discoverable (e.g. via `PYTHONPATH` or proper plugin registration) so the CLI can locate `CropFilter`.
+Make sure the package is installed and discoverable (e.g. via `PYTHONPATH` or proper plugin registration) so the CLI can locate `FilterCrop`.
 
 ---
 
@@ -136,7 +136,7 @@ We especially appreciate clear minimal examples or failing tests.
 * Sign your commits (see below)
 * Open your PR against `main`
 
-If your change alters how the Crop Filter behaves for legacy config patterns, document that in the PR.
+If your change alters how Clipper behaves for legacy config patterns, document that in the PR.
 
 ### Commit message format
 
@@ -269,7 +269,7 @@ gitGraph
 
 ## Thank you 🙏
 
-The Crop Filter exists to make region-based frame processing easier. It's better because of contributors like you.
+Clipper exists to make region-based frame processing easier. It's better because of contributors like you.
 
 Whether you’re fixing a bug, improving test coverage, or just reviewing the code — thank you.
 

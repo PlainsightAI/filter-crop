@@ -1,9 +1,9 @@
 {
-  "label": "Crop Filter",
+  "label": "Clipper",
   "link": {
     "type": "generated-index",
-    "title": "Crop Filter",
-    "description": "Crop description",
+    "title": "Clipper",
+    "description": "Clipper description",
     "slug": "/filter-crop"
   }
 }

@@ -1,4 +1,4 @@
-# Crop Filter
+# Clipper
 
 A specialized OpenFilter component that extracts regions of interest (ROIs) from video frames using either detection metadata or predefined polygons. Supports multiple cropping modes, flexible output options, and comprehensive configuration validation.
 
