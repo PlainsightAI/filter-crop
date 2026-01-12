@@ -3,6 +3,11 @@ Clipper release notes
 
 ## [Unreleased]
 
+## v0.1.9 - 2026-01-12
+### Added
+- security scan workflow
+- update dependencies
+
 ## v0.1.8 - 2025-09-27
 ### Updated
 - **Documentation**: Updated documentation
