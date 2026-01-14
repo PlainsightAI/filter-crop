@@ -3,6 +3,9 @@ name: Create Release
 on:
   workflow_dispatch:
 
+env:
+  DOCKER_IMAGE: plainsightai/openfilter-crop
+
 permissions:
   contents: write
   pull-requests: read
@@ -283,7 +286,7 @@ jobs:
           TAG_ARGS=""
           for TAG in "${TAGS[@]}"; do
             TAG_TRIMMED=$(echo "$TAG" | xargs)
-            TAG_ARGS+="plainsightai/openfilter-event-sink:${TAG_TRIMMED},"
+            TAG_ARGS+="${DOCKER_IMAGE}:${TAG_TRIMMED},"
           done
           TAG_ARGS="${TAG_ARGS%,}" # trim trailing comma
           echo "tags=$TAG_ARGS" >> $GITHUB_OUTPUT
@@ -292,7 +295,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: plainsightai/openfilter-event-sink
+          images: ${{ env.DOCKER_IMAGE }}
           tags: |
             type=raw,value=skip  # dummy tag, we override below
 
