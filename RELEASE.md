@@ -3,6 +3,10 @@ Clipper release notes
 
 ## [Unreleased]
 
+## v0.1.10 - 2026-01-14
+### Fixed
+- docker push in create release workflow
+
 ## v0.1.9 - 2026-01-12
 ### Added
 - security scan workflow
