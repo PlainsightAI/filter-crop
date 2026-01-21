@@ -3,6 +3,11 @@ Clipper release notes
 
 ## [Unreleased]
 
+## v0.1.12 - 2026-01-21
+### Fixed
+- Updated dependencies to latest versions
+- CVE: update `opencv-python-headless` to 4.13.0 (fixes ffmpeg security vulnerability) via OpenFilter 0.1.18
+
 ## v0.1.11 - 2026-01-14
 ### Fixed
 - Add missing Dockerfile

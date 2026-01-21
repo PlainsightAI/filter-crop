@@ -25,15 +25,15 @@ classifiers = [
 dynamic = ["version"]
 
 dependencies = [
-  "openfilter[all]>=0.1.16,<0.2.0"
+  "openfilter[all]==0.1.18"
 ]
 
 [project.optional-dependencies]
 dev = [
-  "build==1.2.1",
-  "setuptools==80.9.0",
-  "twine>=6.1.0,<7",
-  "wheel==0.45.1",
+  "build==1.4.0",
+  "setuptools==80.10.1",
+  "twine==6.2.0",
+  "wheel==0.46.2",
   "pytest==9.0.2",
   "pytest-cov==7.0.0"
 ]
