@@ -3,6 +3,12 @@ Clipper release notes
 
 ## [Unreleased]
 
+## v0.1.13 - 2026-01-28
+### Fixed
+- Add missing X11/OpenCV runtime libraries to Dockerfile
+  - Fixes `ImportError: libxcb.so.1 cannot open shared object file`
+- Update openfilter dependency to 0.1.20
+
 ## v0.1.12 - 2026-01-21
 ### Fixed
 - Updated dependencies to latest versions
