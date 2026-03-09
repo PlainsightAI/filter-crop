@@ -3,6 +3,10 @@ Clipper release notes
 
 ## [Unreleased]
 
+## v0.1.14 - 2026-03-09
+### Fixed
+- Update openfilter dependency to 0.1.21
+
 ## v0.1.13 - 2026-01-28
 ### Fixed
 - Add missing X11/OpenCV runtime libraries to Dockerfile
