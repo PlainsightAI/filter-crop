@@ -2,6 +2,8 @@
 # Repo-specific variables
 # ---------------------------------
 
+IMAGE ?= plainsightai/openfilter-crop
+
 VERSION ?= $(shell cat VERSION)
 export VERSION
 
