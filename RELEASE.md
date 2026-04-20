@@ -3,6 +3,15 @@ Clipper release notes
 
 ## [Unreleased]
 
+## v0.1.15 - 2026-04-20
+
+### Changed
+- Replace inline create-release.yaml with shared workflow caller (~13 lines)
+- Switch to shared security-scan workflow
+- Bump openfilter to >=0.1.27
+- Secret names updated to PYPI_API_TOKEN / DOCKERHUB_TOKEN
+
+
 ## v0.1.14 - 2026-03-09
 ### Changed
 - Bump openfilter dependency to >=0.1.21 for monitoring timing chain support
