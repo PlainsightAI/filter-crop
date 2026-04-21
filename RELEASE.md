@@ -3,6 +3,13 @@ Clipper release notes
 
 ## [Unreleased]
 
+## v0.1.16 - 2026-04-20
+
+### Changed
+- Remove redundant ci.yaml (shared workflow handles PR testing)
+- Add push + pull_request triggers to create-release.yaml
+
+
 ## v0.1.15 - 2026-04-20
 
 ### Changed
