@@ -25,7 +25,7 @@ classifiers = [
 dynamic = ["version"]
 
 dependencies = [
-  "openfilter[all]>=0.1.27"
+  "openfilter[all]>=0.1.30"
 ]
 
 [project.optional-dependencies]
