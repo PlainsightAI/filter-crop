@@ -1,5 +1,3 @@
-# v0.1.17
-
 # Changelog
 Clipper release notes
 
