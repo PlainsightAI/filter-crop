@@ -4,6 +4,10 @@ Clipper release notes
 
 ## [Unreleased]
 
+### Changed
+
+- Bump openfilter to 0.2.1
+
 ## v0.1.17 - 2026-04-24
 
 ### Changed
