@@ -9,6 +9,7 @@ Clipper release notes
 - Bump openfilter to 1.1.1
 - Bump openfilter to 1.1.2
 - Cap openfilter dependency at `<2.0.0` to prevent an unreviewed 2.x major from being pulled in.
+- Bump the openfilter dependency to 1.2.0
 
 ## v0.1.17 - 2026-04-24
 
