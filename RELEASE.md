@@ -4,19 +4,19 @@ Clipper release notes
 
 ## [Unreleased]
 
-### Changed
+## v0.1.18 - 2026-08-04
 
-- Bump openfilter to 1.1.1
-- Bump openfilter to 1.1.2
-- Cap openfilter dependency at `<2.0.0` to prevent an unreviewed 2.x major from being pulled in.
-- Bump the openfilter dependency to 1.2.0
-- Bump the openfilter dependency to 1.2.1
+### Changed
+- Update `openfilter[all]` to `>=1.2.1`.
+- Grant `id-token: write` in `create-release.yaml` so the public release workflow can produce a keyless (cosign) SBOM attestation for the published image (once the shared SBOM steps land).
+- Pin the Docker base to `python:3.13.14-slim` (was `python:3.13-slim`).
+- Update dev-tooling floors (`setuptools>=83.0.0`) and switch dev pins to range pins.
 
 ## v0.1.17 - 2026-04-24
 
 ### Changed
 - Fix release workflow secret names: `PYPI_API_TOKEN` → `PLAINSIGHT_PYPI_TOKEN`, `DOCKERHUB_TOKEN` → `DOCKERHUB_ACCESS_TOKEN` (org-level secret names). Without this the PyPI / Docker Hub tokens resolved to empty and no package has been published since the migration.
-- Bump openfilter dependency to `>=0.1.30`.
+- Update openfilter dependency to `>=0.1.30`.
 - Align CI workflow with shared release gate (source-paths).
 - Remove redundant ci.yaml (shared workflow handles PR testing).
 - Add push + pull_request triggers to create-release.yaml.
@@ -27,13 +27,13 @@ Clipper release notes
 ### Changed
 - Replace inline create-release.yaml with shared workflow caller (~13 lines)
 - Switch to shared security-scan workflow
-- Bump openfilter to >=0.1.27
+- Update openfilter to >=0.1.27
 - Secret names updated to PYPI_API_TOKEN / DOCKERHUB_TOKEN
 
 
 ## v0.1.14 - 2026-03-09
 ### Changed
-- Bump openfilter dependency to >=0.1.21 for monitoring timing chain support
+- Update openfilter dependency to >=0.1.21 for monitoring timing chain support
 
 ## v0.1.13 - 2026-01-28
 ### Fixed
