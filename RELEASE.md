@@ -3,6 +3,10 @@ Clipper release notes
 
 ## [Unreleased]
 
+### Changed
+
+- Bump the openfilter dependency to 1.3.0
+
 ## v0.1.19 - 2026-08-10
 
 ### Changed
