@@ -3,9 +3,12 @@ Clipper release notes
 
 ## [Unreleased]
 
+## v0.1.20 - 2026-08-20
+
 ### Changed
 
-- Bump the openfilter dependency to 1.3.0
+- Update the openfilter dependency to 1.3.0
+- Add Python 3.14 support: raise the `requires-python` ceiling to `<3.15`; the CI test matrix now runs 3.10–3.14.
 
 ## v0.1.19 - 2026-08-10
 
