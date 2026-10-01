@@ -3,6 +3,8 @@ Clipper release notes
 
 ## [Unreleased]
 
+## v0.1.22 - 2026-10-01
+
 ### Fixed
 
 - **Cropped frames now stamp their own `meta['width']` / `meta['height']`.** openfilter stamps
@@ -18,7 +20,6 @@ Clipper release notes
 
 ### Changed
 
-- Bump the openfilter dependency to 1.5.0
 - Bump the openfilter dependency to 1.5.1
 
 ## v0.1.21 - 2026-09-23
