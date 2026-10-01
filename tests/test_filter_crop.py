@@ -50,6 +50,66 @@ class TestFilterCrop(unittest.TestCase):
         self.assertIn("person", output_frames)
         self.assertEqual(output_frames["person"].rw_bgr.image.shape, (100, 100, 3))
 
+    def test_cropped_frames_stamp_their_own_dimensions(self):
+        """A crop is a new pixel space, so meta['width']/['height'] must describe the crop.
+
+        openfilter stamps the emitted frame's dimensions and downstream coordinates live in
+        that space; carrying the source pair over would describe the uncropped frame.
+        """
+        detections = [{"class": "person", "rois": [[50, 50, 150, 150]]}]
+        frame_data = {"meta": {"id": 1, "width": 500, "height": 500, "detections": detections}}
+        frame = Frame(self.frame_image, frame_data, 'BGR')
+
+        output_frames = self.filter.process({"test": frame})
+
+        person = output_frames["person"]
+        self.assertEqual(person.rw_bgr.image.shape, (100, 100, 3))
+        self.assertEqual((person.data["meta"]["width"], person.data["meta"]["height"]), (100, 100))
+        self.assertEqual(person.data["meta"]["id"], 1)  # the rest of meta carries through
+
+        # the uncropped main topic keeps the source dimensions
+        self.assertEqual(
+            (output_frames["main"].data["meta"]["width"], output_frames["main"].data["meta"]["height"]),
+            (500, 500),
+        )
+        # and the source frame's own meta is untouched
+        self.assertEqual((frame_data["meta"]["width"], frame_data["meta"]["height"]), (500, 500))
+
+    def test_each_crop_stamps_its_own_size(self):
+        """Two differently-sized crops must not share one meta dict.
+
+        `{**frame.data}` is a shallow copy, so writing dimensions through it would leave
+        every crop holding the last one's.
+        """
+        detections = [
+            {"class": "person", "rois": [[0, 0, 100, 100]]},
+            {"class": "car", "rois": [[0, 0, 300, 200]]},
+        ]
+        frame_data = {"meta": {"id": 1, "width": 500, "height": 500, "detections": detections}}
+        frame = Frame(self.frame_image, frame_data, 'BGR')
+
+        output_frames = self.filter.process({"test": frame})
+
+        self.assertEqual(
+            (output_frames["person"].data["meta"]["width"], output_frames["person"].data["meta"]["height"]),
+            (100, 100),
+        )
+        self.assertEqual(
+            (output_frames["car"].data["meta"]["width"], output_frames["car"].data["meta"]["height"]),
+            (300, 200),
+        )
+
+    def test_crop_without_upstream_dimensions_invents_none(self):
+        """A source that never stamped is claiming nothing, so nothing is added."""
+        detections = [{"class": "person", "rois": [[50, 50, 150, 150]]}]
+        frame_data = {"meta": {"id": 1, "detections": detections}}
+        frame = Frame(self.frame_image, frame_data, 'BGR')
+
+        output_frames = self.filter.process({"test": frame})
+
+        self.assertNotIn("width", output_frames["person"].data["meta"])
+        self.assertNotIn("height", output_frames["person"].data["meta"])
+
     def test_mutate_original_frames(self):
         config = FilterCropConfig()
         config.polygon_points = "[[(100, 100), (200, 100), (200, 200), (100, 200)]]"

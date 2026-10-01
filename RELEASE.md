@@ -3,6 +3,19 @@ Clipper release notes
 
 ## [Unreleased]
 
+### Fixed
+
+- **Cropped frames now stamp their own `meta['width']` / `meta['height']`.** openfilter stamps
+  the emitted frame's dimensions (openfilter 1.5.0) and downstream coordinates - detection boxes,
+  keypoints, further crops - are expressed in that pixel space. A crop changes that space, but the
+  output frames carried the source pair over unchanged, so they described the uncropped frame and
+  anything drawing boxes from them landed on the wrong pixels. Applies to the four paths that emit
+  a cropped image (detection and polygon modes, with and without `mutate_original_frames`); the
+  paths that forward the full image are unchanged. `meta` is now copied rather than shared, since
+  `{**frame.data}` is a shallow copy and writing through it would reach the source frame's own meta
+  and leave every crop in the detection loop holding the last one's dimensions. Frames whose source
+  never set the keys get nothing added.
+
 ### Changed
 
 - Bump the openfilter dependency to 1.5.0

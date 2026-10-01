@@ -367,6 +367,33 @@ class FilterCrop(Filter):
         sanitize_frame_data(output_frames)
         return output_frames
 
+    @staticmethod
+    def _cropped_frame(frame: Frame, cropped_image) -> Frame:
+        """Build the output Frame for a cropped image, with meta describing the crop.
+
+        openfilter stamps meta['width'] / meta['height'] with the dimensions of the frame
+        it emits, and downstream coordinates - detection boxes, keypoints, further crops -
+        are expressed in that pixel space. A crop changes that space, so carrying the
+        source's pair over unchanged would describe the uncropped frame and put every box
+        drawn from it on the wrong pixels.
+
+        meta is copied rather than shared. `{**frame.data}` is a shallow copy, so writing
+        through it reaches the source frame's own meta, and in the detection loop every
+        crop would end up holding the last one's dimensions. Frames that do not already
+        carry the keys are left alone: a source that never set them is claiming nothing.
+        """
+        data = {**frame.data}
+        meta = {**data.get('meta', {})}
+
+        if 'width' in meta or 'height' in meta:
+            height, width = cropped_image.shape[:2]
+            meta['width'] = width
+            meta['height'] = height
+
+        data['meta'] = meta
+
+        return Frame(cropped_image, data, 'BGR')
+
     def _process_detection_frame(self, frame: Frame) -> Dict[str, Frame]:
         """Process a frame with detections."""
         output_frames = {}
@@ -418,12 +445,12 @@ class FilterCrop(Filter):
                     cropped_frame = image[y1:y2, x1:x2]
                     
                     if self.mutate_original_frames:
-                        frame = Frame(cropped_frame, {**frame.data}, 'BGR')
+                        frame = self._cropped_frame(frame, cropped_frame)
                         frame.data['meta'][SKIP_OCR_FLAG] = False
                         output_frames[topic] = frame
                     else:
                         # Create a new frame for the cropped image
-                        crop_frame = Frame(cropped_frame, {**frame.data}, 'BGR')
+                        crop_frame = self._cropped_frame(frame, cropped_frame)
                         crop_frame.data['meta'][SKIP_OCR_FLAG] = False
                         output_frames[unique_key] = crop_frame
         else:
@@ -474,7 +501,7 @@ class FilterCrop(Filter):
             cropped_frame = masked_frame[self.y:self.y + self.h, self.x:self.x + self.w]
             
             if self.mutate_original_frames:
-                frame = Frame(cropped_frame, {**frame.data}, 'BGR')
+                frame = self._cropped_frame(frame, cropped_frame)
                 frame.data['meta'][SKIP_OCR_FLAG] = False
                 output_frames[topic] = frame
             else:
@@ -487,7 +514,7 @@ class FilterCrop(Filter):
                 if self.output_prefix:
                     output_key = f"{self.output_prefix}{output_key}"
                 
-                crop_frame = Frame(cropped_frame, {**frame.data}, 'BGR')
+                crop_frame = self._cropped_frame(frame, cropped_frame)
                 crop_frame.data['meta'][SKIP_OCR_FLAG] = False
                 output_frames[output_key] = crop_frame
         else:
