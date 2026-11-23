@@ -7,6 +7,7 @@ Clipper release notes
 
 - Bump the openfilter dependency to 1.5.2
 - Bump the openfilter dependency to 1.5.3
+- Bump the openfilter dependency to 1.5.4
 
 ## v0.1.22 - 2026-10-01
 
